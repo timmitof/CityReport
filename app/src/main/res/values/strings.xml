@@ -8,4 +8,7 @@
     <string name="main">Главная</string>
     <string name="add">Добавить</string>
     <string name="profile">Профиль</string>
+    <string name="ok">Ок</string>
+    <string name="cannot_connect_to_server">Не удалось подключиться к серверу</string>
+    <string name="send">Отправить</string>
 </resources>

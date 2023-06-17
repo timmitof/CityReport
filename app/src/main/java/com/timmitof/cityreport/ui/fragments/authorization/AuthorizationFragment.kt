@@ -5,13 +5,16 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import com.timmitof.cityreport.R
-import com.timmitof.cityreport.core.base.BaseFragment
 import com.timmitof.cityreport.core.adapters.ViewPagerAdapter
+import com.timmitof.cityreport.core.base.BaseFragment
 import com.timmitof.cityreport.databinding.FragmentAuthorizationBinding
 import com.timmitof.cityreport.ui.fragments.login.LoginFragment
 import com.timmitof.cityreport.ui.fragments.register.RegisterFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-class AuthorizationFragment : BaseFragment<FragmentAuthorizationBinding>(FragmentAuthorizationBinding::inflate) {
+@AndroidEntryPoint
+class AuthorizationFragment() :
+    BaseFragment<FragmentAuthorizationBinding>(FragmentAuthorizationBinding::inflate) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -24,7 +27,7 @@ class AuthorizationFragment : BaseFragment<FragmentAuthorizationBinding>(Fragmen
         binding.tabsAuth.addOnTabSelectedListener(listenerTab)
     }
 
-    val listenerTab = object: TabLayout.OnTabSelectedListener {
+    val listenerTab = object : TabLayout.OnTabSelectedListener {
         override fun onTabSelected(tab: TabLayout.Tab) {
             binding.viewPagerAuth.currentItem = tab.position
         }

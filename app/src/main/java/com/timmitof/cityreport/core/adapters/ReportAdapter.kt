@@ -3,12 +3,13 @@ package com.timmitof.cityreport.core.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.timmitof.cityreport.R
-import com.timmitof.cityreport.models.ReportModel
+import com.bumptech.glide.Glide
+import com.timmitof.cityreport.core.utils.Constants
 import com.timmitof.cityreport.databinding.ItemReportsBinding
+import com.timmitof.cityreport.models.Complaint
 
 class ReportAdapter: RecyclerView.Adapter<ReportAdapter.ReportViewHolder>() {
-    private var data = listOf<ReportModel>()
+    private var data = listOf<Complaint>()
 
     inner class ReportViewHolder(val binding: ItemReportsBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -21,16 +22,17 @@ class ReportAdapter: RecyclerView.Adapter<ReportAdapter.ReportViewHolder>() {
     override fun onBindViewHolder(holder: ReportViewHolder, position: Int) {
         val item = data[position]
         holder.binding.apply {
-            username.text = item.username
-            imageReport.setColorFilter(R.color.primaryColor)
-            likes.text = item.likes.toString()
+            Glide.with(holder.itemView).load("${Constants.BASE_URL}Photos/${item.imageUrl}").into(imageReport)
+            username.text = item.name
+            likes.text = item.countLike.toString()
             descriptionReport.text = item.description
         }
     }
 
     override fun getItemCount() = data.size
 
-    fun setData(list: List<ReportModel>) {
+    fun setData(list: List<Complaint>) {
         data = list
+        notifyDataSetChanged()
     }
 }
