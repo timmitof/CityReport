@@ -1,13 +1,8 @@
 package com.timmitof.cityreport.core.services
 
-import com.timmitof.cityreport.models.Complaint
-import com.timmitof.cityreport.models.ComplaintRequest
-import com.timmitof.cityreport.models.LoginRequest
-import com.timmitof.cityreport.models.LoginResponse
+import com.timmitof.cityreport.models.*
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface Api {
 
@@ -18,8 +13,15 @@ interface Api {
     suspend fun register(@Body loginRequest: LoginRequest): Response<LoginResponse>
 
     @GET("complaint/get-complaints")
-    suspend fun getAllComplaints(): Response<List<Complaint>>
+    suspend fun getAllComplaints(@Query("userId")userId: Int?): Response<List<Complaint>>
 
     @POST("complaint/add-complaint")
     suspend fun sendComplaint(@Body complaintRequest: ComplaintRequest): Response<Unit>
+
+    @PUT("complaint/put-complaint-importance")
+    suspend fun sendImportance(
+        @Query("userId") userId: Int?,
+        @Query("complaintId") complaintId: Int?,
+        @Query("importance") importance: Int?
+    ): Response<Unit>
 }

@@ -12,6 +12,7 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -53,13 +54,12 @@ class AddReportFragment : BaseFragment<FragmentAddReportBinding>(FragmentAddRepo
             getLocation()
             if (
                 !image.isNullOrBlank() &&
-                !binding.titleInput.text.isNullOrBlank() &&
-                location != null
+                !binding.titleInput.text.isNullOrBlank()
             ) {
                 viewModel.sendComplaint(
                     coordinate = Coordinate(latitude = location?.latitude ?: 0.0, longitude = location?.longitude ?: 0.0, complaintId = null),
-                    description = binding.descriptionInput.text.toString(),
-                    name = binding.titleInput.text.toString(),
+                    description = binding.descriptionInput.text?.toString() ?: "",
+                    name = binding.titleInput.text?.toString() ?: "",
                     image = image!!
                 )
             } else {
@@ -74,6 +74,7 @@ class AddReportFragment : BaseFragment<FragmentAddReportBinding>(FragmentAddRepo
             when(it.status) {
                 Status.SUCCESSFUL -> {
                     Toast.makeText(requireContext(), "Успешно", Toast.LENGTH_SHORT).show()
+                    reset()
                 }
                 Status.FAILURE -> {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
@@ -85,7 +86,6 @@ class AddReportFragment : BaseFragment<FragmentAddReportBinding>(FragmentAddRepo
     }
 
     private fun reset() {
-        image = null
         binding.imageReport.setImageURI(null)
         binding.titleInput.text = null
         binding.descriptionInput.text = null
@@ -93,6 +93,7 @@ class AddReportFragment : BaseFragment<FragmentAddReportBinding>(FragmentAddRepo
 
     override fun onResume() {
         super.onResume()
+        reset()
         getLocation()
     }
 
@@ -119,8 +120,9 @@ class AddReportFragment : BaseFragment<FragmentAddReportBinding>(FragmentAddRepo
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == CAMERA_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
-            Glide.with(this).load(imageBitmap).into(binding.imageReport)
-            image = bitmapToBase64(imageBitmap)
+            Glide.with(this).load(imageBitmap).centerCrop().into(binding.imageReport)
+            val image = bitmapToBase64(imageBitmap)
+            this.image = image
         }
     }
 

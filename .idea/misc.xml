@@ -3,20 +3,27 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/bg_image.xml" value="0.151" />
         <entry key="app/src/main/res/drawable/bg_button.xml" value="0.151" />
         <entry key="app/src/main/res/drawable/bg_circle.xml" value="0.151" />
+        <entry key="app/src/main/res/drawable/bg_image.xml" value="0.151" />
+        <entry key="app/src/main/res/drawable/bg_image_complaince.xml" value="0.151" />
         <entry key="app/src/main/res/drawable/bg_login.xml" value="0.151" />
+        <entry key="app/src/main/res/drawable/ic_list.xml" value="0.151" />
+        <entry key="app/src/main/res/drawable/ic_lock.xml" value="0.151" />
+        <entry key="app/src/main/res/drawable/ic_person.xml" value="0.151" />
         <entry key="app/src/main/res/drawable/ic_subtract.xml" value="0.151" />
         <entry key="app/src/main/res/drawable/runded_bg.xml" value="0.151" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.15896739130434784" />
+        <entry key="app/src/main/res/layout-v31/fragment_add_report.xml" value="0.15896739130434784" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.30989512567934785" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15896739130434784" />
-        <entry key="app/src/main/res/layout/fragment_add_report.xml" value="0.15896739130434784" />
+        <entry key="app/src/main/res/layout/fragment_add_report.xml" value="0.2326688683551291" />
         <entry key="app/src/main/res/layout/fragment_authorization.xml" value="0.15896739130434784" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.15896739130434784" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.22983225946841035" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.15896739130434784" />
-        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.15896739130434784" />
-        <entry key="app/src/main/res/layout/item_reports.xml" value="0.5180722891566265" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.24255503778872287" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.3098783410113791" />
+        <entry key="app/src/main/res/layout/item_reports.xml" value="0.29436623446912646" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/xml/network_security_config.xml" value="0.1140625" />
       </map>

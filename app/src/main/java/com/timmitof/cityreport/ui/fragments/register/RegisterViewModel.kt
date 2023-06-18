@@ -36,7 +36,9 @@ class RegisterViewModel @Inject constructor(
                             reportRegister.postValue(Resource.success(it.body()))
                         }
                     }
-                } catch (e: Exception) {}
+                } catch (e: Exception) {
+                    reportRegister.postValue(Resource.failure("Не удалось соединиться к серверу"))
+                }
             }
         } else Toast.makeText(context, "Нет интернет соединения!", Toast.LENGTH_SHORT).show()
     }

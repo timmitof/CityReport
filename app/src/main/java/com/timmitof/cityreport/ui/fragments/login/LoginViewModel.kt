@@ -51,7 +51,9 @@ class LoginViewModel @Inject constructor(
                             reportLogin.postValue(Resource.success(it.body()))
                         }
                     }
-                } catch (e: Exception) {}
+                } catch (e: Exception) {
+                    reportLogin.postValue(Resource.failure("Не удалось соединиться к серверу"))
+                }
             }
         } else Toast.makeText(context, "Нет интернет соединения!", Toast.LENGTH_SHORT).show()
     }

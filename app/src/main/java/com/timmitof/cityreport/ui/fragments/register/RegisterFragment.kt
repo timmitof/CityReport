@@ -5,12 +5,17 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import com.santalu.maskara.Mask
+import com.santalu.maskara.MaskChangedListener
+import com.santalu.maskara.MaskStyle
 import com.timmitof.cityreport.core.base.BaseFragment
 import com.timmitof.cityreport.core.utils.Status
 import com.timmitof.cityreport.databinding.FragmentRegisterBinding
 import com.timmitof.cityreport.ui.activities.HomeActivity
 import com.timmitof.cityreport.ui.fragments.login.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
+private const val MASK_PHONE = "+996 ___ ___ ___"
 
 @AndroidEntryPoint
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::inflate) {
@@ -19,8 +24,19 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val mask = Mask(
+            value = MASK_PHONE,
+            character = '_',
+            style = MaskStyle.PERSISTENT
+        )
+        val listener = MaskChangedListener(mask)
+        binding.loginInput.addTextChangedListener(listener)
         binding.loginBtn.setOnClickListener {
-            register()
+            if (MASK_PHONE.trim().length == binding.loginInput.text?.toString()?.length) {
+                register()
+            } else {
+                Toast.makeText(requireActivity(), "Неверный формат номера телефона", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -36,7 +52,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                         requireActivity().finish()
                     }
                     Status.FAILURE -> {
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                        showAlert(it.message)
                     }
                     Status.LOADING -> {
                     }

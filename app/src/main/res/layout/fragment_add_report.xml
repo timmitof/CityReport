@@ -5,24 +5,54 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/background"
     tools:context=".ui.fragments.addReport.AddReportFragment">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:paddingVertical="20dp"
+        android:textColor="@color/black"
+        android:text="@string/report_complaince"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingHorizontal="40dp">
+            android:paddingHorizontal="40dp"
+            android:paddingVertical="20dp">
+
             <ImageView
                 android:id="@+id/imageReport"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="200dp"
                 android:layout_gravity="center"
-                android:background="@drawable/bg_button"
+                android:background="@drawable/bg_image_complaince"
+                android:clipToOutline="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Заголовок"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageReport" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_title"
@@ -33,9 +63,8 @@
                 app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
                 app:boxCornerRadiusTopStart="10dp"
-                android:layout_marginTop="20dp"
-                app:boxStrokeColor="@color/blue"
-                app:layout_constraintTop_toBottomOf="@+id/imageReport"
+                app:boxStrokeColor="@color/primaryColor"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
                 tools:layout_editor_absoluteX="40dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -48,18 +77,26 @@
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Описание проблемы"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_title" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_description"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="20dp"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
                 app:boxCornerRadiusTopStart="10dp"
-                app:boxStrokeColor="@color/blue"
-                app:layout_constraintTop_toBottomOf="@+id/layout_title"
+                app:boxStrokeColor="@color/primaryColor"
+                app:layout_constraintTop_toBottomOf="@+id/textView3"
                 tools:layout_editor_absoluteX="40dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -78,12 +115,12 @@
             <Button
                 android:id="@+id/send_button"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
                 android:background="@drawable/bg_button"
                 android:text="@string/send"
                 android:textAllCaps="false"
                 android:textSize="16sp"
-                android:layout_marginTop="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_description"
                 tools:layout_editor_absoluteX="40dp" />
